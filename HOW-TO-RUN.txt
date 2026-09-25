@@ -1,0 +1,72 @@
+HOW TO RUN THE PORTFOLIO DASHBOARD
+====================================
+
+Do this every day you want to use it:
+
+1. Get today's Dhan access token
+   - Log in to Dhan's developer/API section and copy today's access token
+   - (This expires daily, so you need a fresh one each day)
+
+2. Open Command Prompt
+
+3. Go to the dashboard folder by typing:
+   cd Desktop\portfolio-dashboard
+
+4. Start the server by typing:
+   "C:\Users\Dell\.bun\bin\bun.exe" server.js
+
+   Wait until you see:
+   Dhan proxy + dashboard running at http://localhost:4000
+   Scrip master ready: ...rows
+
+   Leave this Command Prompt window OPEN the whole time you're using
+   the dashboard. Closing it shuts the dashboard down.
+
+5. Open your browser (Chrome/Edge) and go to:
+   http://localhost:4000
+
+6. In the dashboard:
+   - Upload your positions CSV
+   - Paste today's Dhan access token -> click "Save token to proxy"
+   - If any index (Midcap Select, Smallcap 250) shows unresolved,
+     use the "Search the scrip master" box to find its security ID,
+     paste it into the matching override row, click Save
+   - Set the date range (defaults to last 30 days) or use the
+     "1 Week" / "1 Month" / "Custom" buttons
+   - Click "Fetch & build"
+
+7. Check the Portfolio Insights section and the comparison tabs
+   (Nifty 50 / Sensex / Nifty Midcap Select) for the numbers you need
+
+8. When you're done, click "Download PDF report" to save/share the
+   snapshot, then close the Command Prompt window to stop the server.
+
+
+WHEN I SEND YOU UPDATED FILES
+------------------------------
+- If ONLY dashboard.html changed:
+  Just replace the file in the folder, then refresh
+  http://localhost:4000 in your browser. No restart needed.
+
+- If server.js changed (or both files changed):
+  1. Go to the Command Prompt window running the server
+  2. Press Ctrl+C to stop it
+  3. Replace both files in the folder
+  4. Run the start command again (step 4 above)
+  5. Refresh the browser page
+
+  Rule of thumb: server.js changes ALWAYS need a restart.
+  dashboard.html changes only need a browser refresh.
+
+
+NOTES
+-----
+- If "bun server.js" alone says "not recognized", always use the
+  full path version shown in step 4 instead.
+- The scrip master (instrument list) downloads fresh each time you
+  start the server -- needs internet for that one step.
+- Your Dhan token is only kept in memory while the server is running.
+  It is never saved to a file.
+- Index security ID overrides you save are kept in your browser
+  (localStorage), so they persist across restarts -- you only need
+  to set them once, not every day.
